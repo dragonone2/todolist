@@ -28,18 +28,19 @@ const App = () => {
     );
   };
   const [startDate, setStartDate] = useState(new Date());
-  const todayTime = ()=>{
-    let now = new Data();
-  }
+  var date1 = [];
   return (
     <SafeAreaView style={styles.container}>
        <ImageBackground source={require("C:/Users/강현호/Desktop/개인프로젝트/GP/assets/back.jpg")} style={styles.bgImage}>
       <Text style={styles.appTitle}>To do List</Text>
       <View style={styles.card} >
-      <DatePicker style={styles.date} selected={startDate} onChange={date => setStartDate(date)} />
+      <View style = {styles.card1}>
+      <DatePicker style={styles.date} selected={startDate} onChange={date => setStartDate(date)} date1={startDate} />
+      </View>
         <TodoInsert onAddTodo={addTodo} />
         <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
       </View>
+      
       </ImageBackground>
     </SafeAreaView>
   );
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     textAlign: 'center',
     alignItems: 'center',
+    fontWeight:'bold',
   },
   card: {
     backgroundColor: '#fff',
@@ -78,6 +80,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width:800,
   },
+  card1: {
+    alignItems: 'center',
+    alignContent: 'center',
+  }
 });
 
 export default App;
