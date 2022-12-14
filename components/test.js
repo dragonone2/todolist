@@ -33,7 +33,7 @@ const App = () => {
     
     <SafeAreaView style={styles.container}>
      
-       <ImageBackground source={require("C:/Users/강현호/Desktop/개인프로젝트/GP/assets/back.jpg")} style={styles.bgImage}>
+       <ImageBackground source={require("../assets/back.jpg")} style={styles.bgImage}>
       <Text style={styles.appTitle}>To do List</Text>
       <View style={styles.card} >
       <View style = {styles.card1}>
