@@ -1,89 +1,26 @@
-import React, {useState} from 'react';
-import TodoList from './components/TodoList';
-import {SafeAreaView, View, Text, StyleSheet, ImageBackground} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import test from './components/test';
 import TodoInsert from './components/TodoInsert';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import TodoList from './components/TodoList';
+import TodoListItem from './components/TodoListItem';
+import React, { useState } from 'react'
+const Stack = createStackNavigator();
 
-const App = () => {
-  // todos: {id: Number, textValue: string, checked: boolean }
-  const [todos, setTodos] = useState([]);
-
-  const addTodo = text => {
-    setTodos([
-      ...todos,
-      {id: Math.random().toString(), textValue: text, checked: false},
-    ]);
-  };
-
-  const onRemove = id => e => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
-
-  const onToggle = id => e => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === id ? {...todo, checked: !todo.checked} : todo,
-      ),
-    );
-  };
-  const [startDate, setStartDate] = useState(new Date());
-  var date1 = [];
+export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-       <ImageBackground source={require("C:/Users/강현호/Desktop/개인프로젝트/GP/assets/back.jpg")} style={styles.bgImage}>
-      <Text style={styles.appTitle}>To do List</Text>
-      <View style={styles.card} >
-      <View style = {styles.card1}>
-      <DatePicker style={styles.date} selected={startDate} onChange={date => setStartDate(date)} date1={startDate} />
-      </View>
-        <TodoInsert onAddTodo={addTodo} />
-        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
-      </View>
-      
-      </ImageBackground>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator 
+      initialRouteName = 'test'
+      screenOptions={{
+        headerShown: false,
+      }}>
+        <Stack.Screen name="test" component={test} />
+        <Stack.Screen name="TodoInsert" component={TodoInsert} />
+        <Stack.Screen name="TodoList" component={TodoList} />
+        <Stack.Screen name = "TodoListItem" component={TodoListItem}/>
+        
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#3143e8',
-    alignItems: 'center',
-  },
-  date: {
-    alignItems: 'center',
-  },
-  bgImage: {
-    width: '100%', 
-    height: '100%',
-    alignItems: 'center',
-  },
-  appTitle: {
-    color: '#fff',
-    fontSize: 36,
-    marginTop: 30,
-    marginBottom: 30,
-    fontWeight: '300',
-    textAlign: 'center',
-    alignItems: 'center',
-    fontWeight:'bold',
-  },
-  card: {
-    backgroundColor: '#fff',
-    flex: 1,
-    borderTopLeftRadius: 10, // to provide rounded corners
-    borderTopRightRadius: 10, // to provide rounded corners
-    marginLeft: 10,
-    marginRight: 10,
-    alignItems: 'center',
-    width:800,
-  },
-  card1: {
-    alignItems: 'center',
-    alignContent: 'center',
-  }
-});
-
-export default App;
+}

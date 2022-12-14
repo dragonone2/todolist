@@ -24,7 +24,7 @@ const TodoInsert = ({onAddTodo}) => {
         autoCorrect={false}
       />
       <View style={styles.button}>
-        <Button title={'ADD'} onPress={addTodoHandler} />
+        <Button title={'추가'} onPress={addTodoHandler} />
       </View>
     </View>
   );
@@ -38,11 +38,12 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    padding: 20,
+    padding: 5,
     borderBottomColor: '#bbb',
     borderBottomWidth: 1,
-    fontSize: 24,
+    fontSize: 18,
     marginLeft: 20,
+    marginTop: 15,
   },
   button: {
     marginRight: 10,
